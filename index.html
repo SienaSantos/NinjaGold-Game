@@ -69,7 +69,10 @@
                  amount: 5
                }
                data.events.push(event)
-               $("#all").html(JSON.stringify(data.events));
+               var arr = [
+                 '<p style = "color : green"> Ninja went to ', event.location, 'and got', event.amount, ' .The time was', event.time
+               ]
+               $("#all").append(arr.join(''));
                console.log(data.events)
              }
              function houseGold (){
@@ -89,7 +92,10 @@
                    amount: 10
                  }
                  data.events.push(event)
-                 $("#all").html(JSON.stringify(data.events));
+                 var arr = [
+                   '<p style = "color : green"> Ninja went to ', event.location, 'and got', event.amount, ' .The time was', event.time
+                 ]
+                 $("#all").append(arr.join(''));
                  console.log(data.events)
                }
              }
@@ -111,29 +117,40 @@
                    amount: random1
                  }
                  data.events.push(event)
-                 $("#all").html(JSON.stringify(data.events));
+                 var arr = [
+                   '<p style = "color : green"> Ninja went to ', event.location, 'and got', event.amount, ' .The time was', event.time
+                 ]
+                 $("#all").append(arr.join(''));
                  console.log(data.events)
                }
              }
              function casinoGold (){
                var random =  Math.floor(Math.random()*10+1);
                var random1 = Math.floor(Math.random()*(50-20)+20);
+               var event = {
+                 location: 'Casino',
+                 time: Date(),
+                 amount: random1
+               }
                if(random >= 6)
                {
                  $("#score").val(gold-random1);
-                 log.push("Casino", Date(), random1)
-                 console.log('-' + random1)
+
+                 data.events.push(event)
+                 var arr = [
+                   '<p style = "color : red"> Ninja went to ', event.location, 'and lost', event.amount, ' .The time was', event.time
+                 ]
+                 $("#all").append(arr.join(''));
+                 console.log(data.events)
                }
                else {
                  gold = gold + random1;
                  $("#score").val(data.score+gold);
-                 var event = {
-                   location: 'Casino',
-                   time: Date(),
-                   amount: random1
-                 }
                  data.events.push(event)
-                 $("#all").html(JSON.stringify(data.events));
+                 var arr = [
+                   '<p style = "color : green"> Ninja went to ', event.location, 'and got', event.amount, ' .The time was', event.time
+                 ]
+                 $("#all").append(arr.join(''));
                  console.log(data.events)
                }
              }
