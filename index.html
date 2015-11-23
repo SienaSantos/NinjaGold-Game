@@ -19,8 +19,6 @@
     };
 
     var log = [];
-
-
          $(document).ready(function()
          {
              $('#score').attr("disabled","disabled")
@@ -30,6 +28,10 @@
              var x = 0;
              var gold = 0;
 
+             if(gold >= 0 ){
+               message()
+             }
+             else{
              $("#btnCave").click(function(){
                  $("img").animate({left: '250px'});
                  caveGold()
@@ -42,6 +44,7 @@
                  houseGold()
                   x= x+1;
                  $("#attempts").val(data.attempts-x);
+                 msg()
              });
              $("#btnGoldmine").click(function(){
                  $("img").animate({left: '835px'});
@@ -70,9 +73,10 @@
                }
                data.events.push(event)
                var arr = [
-                 '<p style = "color : green"> Ninja went to ', event.location, 'and got', event.amount, ' .The time was', event.time
+                 '<p style = "color : green"> Ninja went to ', event.location, ' and got ', event.amount, ' .The time was ', event.time
                ]
                $("#all").append(arr.join(''));
+               $("#gains").append(arr.join(''))
                console.log(data.events)
              }
              function houseGold (){
@@ -93,9 +97,10 @@
                  }
                  data.events.push(event)
                  var arr = [
-                   '<p style = "color : green"> Ninja went to ', event.location, 'and got', event.amount, ' .The time was', event.time
+                   '<p style = "color : green"> Ninja went to ', event.location, ' and got ', event.amount, ' .The time was ', event.time
                  ]
                  $("#all").append(arr.join(''));
+                 $("#gains").append(arr.join(''));
                  console.log(data.events)
                }
              }
@@ -118,9 +123,10 @@
                  }
                  data.events.push(event)
                  var arr = [
-                   '<p style = "color : green"> Ninja went to ', event.location, 'and got', event.amount, ' .The time was', event.time
+                   '<p style = "color : green"> Ninja went to ', event.location, ' and got  ', event.amount, ' .The time was ', event.time
                  ]
                  $("#all").append(arr.join(''));
+                 $("#gains").append(arr.join(''));
                  console.log(data.events)
                }
              }
@@ -138,9 +144,10 @@
 
                  data.events.push(event)
                  var arr = [
-                   '<p style = "color : red"> Ninja went to ', event.location, 'and lost', event.amount, ' .The time was', event.time
+                   '<p style = "color : red"> Ninja went to ', event.location, ' and lost ', event.amount, ' .The time was ', event.time
                  ]
                  $("#all").append(arr.join(''));
+                 $("#loss").append(arr.join(''));
                  console.log(data.events)
                }
                else {
@@ -148,14 +155,27 @@
                  $("#score").val(data.score+gold);
                  data.events.push(event)
                  var arr = [
-                   '<p style = "color : green"> Ninja went to ', event.location, 'and got', event.amount, ' .The time was', event.time
+                   '<p style = "color : green"> Ninja went to ', event.location, ' and got ', event.amount, ' .The time was ', event.time
                  ]
                  $("#all").append(arr.join(''));
+                 $("#gains").append(arr.join(''));
                  console.log(data.events)
                }
              }
+             function message () {
+                alert("YOU WIN!");
+            }
+            // function scroll (){
+            //   var scrollDiv = document.getElementById("#all");
+            //   scrollDiv.scrollTop = scrollDiv.scrollHeight;
+            // }
 
+            // function msg () {
+            //   $("#dialog").dialog();
+            // }
+          }
          });
+
     </script>
 
   </head>
@@ -202,7 +222,7 @@
         </div>
       </div>
       <!--ninja here  -->
-      <div class="row row4">
+      <div class="row row4 ">
         <ul class="nav nav-tabs">
           <li class="active"><a data-toggle="tab" href="#All">ALL</a></li>
           <li><a data-toggle="tab" href="#Gains">GAINS</a></li>
@@ -225,6 +245,10 @@
           <p id ="loss"></p>
         </div>
       </div>
+
+      <!-- <div id="dialog" title="Basic dialog">
+        <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+      </div> -->
 
     </div>
 

@@ -18,6 +18,10 @@ div{
 .ninjahere{
   height: 250px;
 }
+.tab-content{
+  height: 200px;
+  overflow-y: auto;
+}
 
 /*i.ninja{
   width: 300px;
