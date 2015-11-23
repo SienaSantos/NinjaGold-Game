@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ninja Gold Game</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/bootstrap.min.js"></script>
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    <script>
+    var data = {
+      attempts : 20,
+      score : 0,
+      events: []
+    };
+
+    var log = [];
+
+
+         $(document).ready(function()
+         {
+             $('#score').attr("disabled","disabled")
+             $('#attempts').attr("disabled","disabled")
+             $("#attempts").val(data.attempts);
+             $("#score").val(data.score);
+             var x = 0;
+             var gold = 0;
+
+             $("#btnCave").click(function(){
+                 $("img").animate({left: '250px'});
+                 caveGold()
+                 x= x+1;
+                $("#attempts").val(data.attempts-x);
+
+             });
+             $("#btnHouse").click(function(){
+                 $("img").animate({left: '550px'});
+                 houseGold()
+                  x= x+1;
+                 $("#attempts").val(data.attempts-x);
+             });
+             $("#btnGoldmine").click(function(){
+                 $("img").animate({left: '835px'});
+                 goldmine()
+                  x= x+1;
+                 $("#attempts").val(data.attempts-x);
+             });
+             $("#btnCasino").click(function(){
+                 $("img").animate({left: '1130px'});
+                 casinoGold()
+                  x= x+1;
+                 $("#attempts").val(data.attempts-x);
+
+             });
+             function log (){
+               console.log('hi')
+             }
+
+             function caveGold (){
+               gold = gold + 5;
+               $("#score").val(data.score+gold);
+               var event = {
+                 location: 'Cave',
+                 time: Date(),
+                 amount: 5
+               }
+               data.events.push(event)
+               $("#all").html(JSON.stringify(data.events));
+               console.log(data.events)
+             }
+             function houseGold (){
+               var random = Math.floor(Math.random()*10+1);
+               if(random >= 9)
+               {
+                 gold = gold + 0;
+                 $("#score").val(data.score+gold);
+                 console.log(random)
+               }
+               else {
+                 gold = gold + 10;
+                 $("#score").val(data.score+gold);
+                 var event = {
+                   location: 'House',
+                   time: Date(),
+                   amount: 10
+                 }
+                 data.events.push(event)
+                 $("#all").html(JSON.stringify(data.events));
+                 console.log(data.events)
+               }
+             }
+             function goldmine (){
+               var random =  Math.floor(Math.random()*10+1);
+               var random1 = Math.floor(Math.random()*25+1);
+               if(random >= 9 )
+               {
+                 gold = gold + 0;
+                 $("#score").val(data.score+gold);
+                 console.log(random)
+               }
+               else {
+                 gold = gold + random1;
+                 $("#score").val(data.score+gold);
+                 var event = {
+                   location: 'Goldmine',
+                   time: Date(),
+                   amount: random1
+                 }
+                 data.events.push(event)
+                 $("#all").html(JSON.stringify(data.events));
+                 console.log(data.events)
+               }
+             }
+             function casinoGold (){
+               var random =  Math.floor(Math.random()*10+1);
+               var random1 = Math.floor(Math.random()*(50-20)+20);
+               if(random >= 6)
+               {
+                 $("#score").val(gold-random1);
+                 log.push("Casino", Date(), random1)
+                 console.log('-' + random1)
+               }
+               else {
+                 gold = gold + random1;
+                 $("#score").val(data.score+gold);
+                 var event = {
+                   location: 'Casino',
+                   time: Date(),
+                   amount: random1
+                 }
+                 data.events.push(event)
+                 $("#all").html(JSON.stringify(data.events));
+                 console.log(data.events)
+               }
+             }
+
+         });
+    </script>
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="row row1">
+        <div class="col-md-6">
+          <button id = "btnReset" style="margin-top: 10px;" type="button" class="btn btn-primary btn-lg">RESET</button>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="score">SCORE:</label><input type="score" class="form-control" id="score">
+          </div>
+          <div class="form-group">
+            <label for="attempts">ATTEMPTS:</label><input type="attempts" class="form-control" id="attempts">
+          </div>
+        </div>
+
+      </div>
+      <!-- row row 1  -->
+
+      <div class="row row2">
+          <div class="col-md-3">
+            <button id = "btnCave" type="button" >CAVE</button>
+          </div>
+          <div class="col-md-3">
+            <button id = "btnHouse" type="button" >HOUSE</button>
+          </div>
+          <div class="col-md-3">
+            <button id = "btnGoldmine" type="button">GOLDMINE</button>
+          </div>
+          <div class="col-md-3">
+            <button id = "btnCasino" type="button" >CASINO</button>
+          </div>
+
+      </div>
+      <!-- <button>Start Animation</button>
+      <div class ="color" style="background:#98bf21;height:100px;width:100px;position:absolute;">hello <span><img src="images/ninja.png" alt="" /></span></div> -->
+      <!-- row row 2  -->
+      <div class="row row3">
+        <div class="ninjahere">
+          <img style="position: absolute;" src="images/ninja.png" alt="" />
+            <!-- <img id = "ninja" src='images/ninja.png' style="width : 200px; height : 200px;" alt='ninja'> -->
+        </div>
+      </div>
+      <!--ninja here  -->
+      <div class="row row4">
+        <ul class="nav nav-tabs">
+          <li class="active"><a data-toggle="tab" href="#All">ALL</a></li>
+          <li><a data-toggle="tab" href="#Gains">GAINS</a></li>
+          <li><a data-toggle="tab" href="#Loss">LOSSES</a></li>
+        </ul>
+      </div>
+      <!-- log here -->
+      <div class="tab-content">
+        <div id="All" class="tab-pane fade in active">
+          <h3>All</h3>
+          <p id ="all"></p>
+
+        </div>
+        <div id="Gains" class="tab-pane fade">
+          <h3>List of Gains</h3>
+          <p id ="gains"></p>
+        </div>
+        <div id="Loss" class="tab-pane fade">
+          <h3>List of Money you lose</h3>
+          <p id ="loss"></p>
+        </div>
+      </div>
+
+    </div>
+
+  </body>
+</html>
