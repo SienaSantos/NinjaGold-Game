@@ -2,10 +2,11 @@ div{
 
 }
 .container{
-
+  border-left: 20px solid #eee;
+  border-right: 20px solid #eee;
   background-color: #FFF5D0;
 }
-.row1{
+.row1, .row2,.row4  {
   background-color: #FFF5D0;
 }
 .row2 button{
@@ -16,17 +17,11 @@ div{
   border-color: #F24629;
   border-radius: 5px 5px 5px 5px;
   font-size: 18px;
+}
 
-}
-.row2{
-  background-color: #FFF5D0;
-}
 .row3{
   background-image: url("images/bg.png");
   background-color: skyblue;
-}
-.row4{
-  background-color: #FFF5D0;
 }
 .col-md-3{
   align-items: center;
@@ -47,9 +42,3 @@ div{
   font-size: 15px;
   font-weight: 700;
 }
-
-/*i.ninja{
-  width: 300px;
-  background-image: url(images/ninja.png)no-repeat 0px 0px;
-  vertical-align: middle;
-}*/
