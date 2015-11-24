@@ -190,6 +190,13 @@
                 $( ".row2 button" ).attr( "disabled", "disabled").css( "background-color", "#3b627f" );
               }
             }
+            // slight update to account for browsers not supporting e.which
+            function disableF5(e) { if ((e.which || e.keyCode) == 116) e.preventDefault(); };
+            $(document).bind("keydown", disableF5);
+            $(document).on("keydown", disableF5);
+
+            // unbind, off
+
          });
 
     </script>
