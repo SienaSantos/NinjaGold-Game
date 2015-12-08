@@ -19,10 +19,6 @@ div{
   font-size: 18px;
 }
 
-.row3{
-  background-image: url("images/bg.png");
-  background-color: skyblue;
-}
 .col-md-3{
   align-items: center;
 }
@@ -42,3 +38,6 @@ div{
   font-size: 15px;
   font-weight: 700;
 }
+/*.row3 img #ninjaja{
+  scr: url("images/ninjalex.png") no-repeat;
+}*/

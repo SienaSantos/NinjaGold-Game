@@ -208,6 +208,33 @@
              }
             });
 
+            $("#character").change(function () {
+            var avatar = $("#character").val();
+
+            if (avatar == "lizette") {
+            $('#ninjaja').css('background-image', 'url(images/ninjaliz.png)');
+            }
+
+            if (avatar == "bebbb") {
+            $('#ninjaja').css('background-image', 'url(images/ninjabeb.png)');
+            }
+
+            if (avatar == "reina") {
+            $('#ninjaja').css('background-image', 'url(images/ninjareina.png)');
+            }
+            if (avatar == "alex") {
+            $('#ninjaja').css('background-image', 'url(images/ninjalex.png)');
+            }
+
+            });
+
+            $(document).ready(function(){
+               $("#character").change(function(){
+                 $("img[name=ninjaja]").attr("src",$(this).val());
+
+               });
+
+            });
          });
 
     </script>
@@ -217,8 +244,20 @@
     <div class="container">
       <div class="row row1">
         <div class="col-md-6">
-
-          <button id = "btnReset" style="margin-top: 10px;background-color: #F78956;border-color: #F24629;" type="button" class="btn btn-primary btn-lg">RESET</button>
+          <div class="col-md-5">
+            <button id = "btnReset" style="margin-top: 10px;background-color: #F78956;border-color: #F24629;" type="button" class="btn btn-primary btn-lg">RESET</button>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+            <label for="sel1">Select character:</label>
+            <select class="form-control" id="character" name = "character">
+              <option value="images/ninjaliz.png" selected>lizette</option>
+              <option value="images/ninjabeb.png">bebbb</option>
+              <option value="images/ninjareina.png">reina</option>
+              <option value="images/ninjalex.png">alex</option>
+            </select>
+            </div>
+          </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
@@ -228,8 +267,7 @@
             <label for="attempts">ATTEMPTS:</label><input type="attempts" class="form-control" id="attempts">
           </div>
         </div>
-
-      </div>
+    </div>
       <!-- row row 1  -->
 
       <div class="row row2">
@@ -253,7 +291,7 @@
       <div class="row row3">
         <div class="ninjahere">
           <img style="width : 100% ; height : 100%" src="images/bg.png" alt="" />
-          <img style="position: absolute; left : 15% ; top :220px" src="images/ninja.png" alt="" / id = "ninjaja">
+          <img name = "ninjaja" style="position: absolute; left : 15% ; top :150px" src="" alt="" / >
             <!-- <img id = "ninja" src='images/ninja.png' style="width : 200px; height : 200px;" alt='ninja'> -->
         </div>
       </div>
